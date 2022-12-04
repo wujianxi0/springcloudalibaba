@@ -1,0 +1,39 @@
+server:
+  port: 8020
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      server-addr: 192.168.84.128:8848
+#        server-addr: 192.168.84.128:8848
+      group: g1
+    #        server-addr: 192.168.10.7:8848
+      username: nacos
+      password: nacos
+#        group: g1
+#        ephemeral: false
+      #        namespace: 2784ac43-bb63-4411-b471-013b620ff728
+      discovery:
+        group: g1
+mail-service:
+  ribbon:
+      NFLoadBalancerRuleClassName: com.academy.loadbalancerule.CustomRule
+ribbon:
+  eager-load:
+    clients: mail-service,stock-service
+    enabled: true
+logging:
+  level:
+    com.academy.order.openfeign.MailFeignService: debug
+    com.academy.order.openfeign.StockFeignService: debug
+feign:
+  client:
+    config:
+      stock-service:
+        loggerLevel: FULL
+        request-interceptors:
+          - com.academy.order.interceptor.CustomInterceptor
+      mail-service:
+        request-interceptors:
+          - com.academy.order.interceptor.CustomInterceptor

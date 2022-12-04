@@ -1,0 +1,31 @@
+server:
+  port: 8070
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: order_server
+          uri: lb://order-seata
+          predicates:
+            - Path=/order-server/**
+            - After=2022-11-12T10:22:56.460+08:00[Asia/Shanghai]
+            - Method=POST
+            - Config=cus_predicate_test,cus_predicate_config_test
+          filters:
+            - StripPrefix=1
+        - id: order_simple
+          uri: http://localhost:8080
+          predicates:
+            - Path=/order-server-simple/**
+          filters:
+            - AddRequestHeader=X-Request-Id,123456
+            - StripPrefix=1
+#            - Token=access-token
+#    nacos:
+#      server-addr: 192.168.84.128:8848
+#      username: nacos
+#      password: nacos
+#      discovery:
+#        group: SEATA_GROUP

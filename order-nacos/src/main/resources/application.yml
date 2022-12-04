@@ -1,0 +1,24 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.84.128:8848
+#        server-addr: 192.168.84.128:8849
+        group: g1
+      #        server-addr: 192.168.10.7:8848
+#        username: nacos1
+#        password: nacos2
+#        group: g1
+#        ephemeral: false
+      #        namespace: 2784ac43-bb63-4411-b471-013b620ff728
+mail-service:
+  ribbon:
+      NFLoadBalancerRuleClassName: com.academy.loadbalancerule.CustomRule
+ribbon:
+  eager-load:
+    clients: mail-service
+    enabled: true

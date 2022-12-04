@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: stock-seata
+  cloud:
+    nacos:
+      server-addr: 192.168.84.128:8848
+      username: nacos
+      password: nacos
+      config:
+        group: SEATA_GROUP
+      discovery:
+        group: SEATA_GROUP
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.84.128:3306/seata_stock?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+server:
+  port: 8061
+mybatis:
+  mapper-locations: classpath*:com/academy/stock/**/xml/*Mapper.xml
+
+seata:
+  config:
+    type: nacos
+    nacos:
+      server-addr: 192.168.84.128:8848
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 192.168.84.128:8848
+  tx-service-group: xiamen
+  #service.vgroup-mapping.xiamen 配置在此处无用？
+  service:
+    vgroup-mapping:
+      xiamen: default

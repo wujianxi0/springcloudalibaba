@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.academy.stock.mapper.StockMapper">
+    <update id="reduce" parameterType="com.academy.stock.entity.StockEntity">
+        update wm_stock set total_count = total_count - #{stock.reduceCount}
+            where product_id = #{stock.productId}
+    </update>
+</mapper>

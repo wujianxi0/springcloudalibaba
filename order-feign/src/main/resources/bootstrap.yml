@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      config:
+        file-extension: properties
+        group: academy
+        namespace: ef2c466b-c035-42d4-9b8d-9e8497a427ed
+      server-addr: 192.168.84.128:8848
+#      namespace: ef2c466b-c035-42d4-9b8d-9e8497a427ed

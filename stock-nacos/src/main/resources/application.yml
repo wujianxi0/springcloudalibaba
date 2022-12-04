@@ -1,0 +1,13 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: stock-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.84.128:8848
+        group: g1
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8100

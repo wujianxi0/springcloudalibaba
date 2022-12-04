@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    nacos:
+      server-addr: 192.168.84.128:8848
+      config:
+        group: academy
+        namespace: ef2c466b-c035-42d4-9b8d-9e8497a427ed
+        extension-configs:
+          - data-id: common1
+            group: academy
+            refresh: true
+          - data-id: common2
+            group: academy
+            refresh: true
+        shared-configs:
+          - data-id: shared1
+            group: academy
+            refresh: true
+          - data-id: shared2
+            group: academy
+            refresh: true
+  profiles:
+    active: dev
